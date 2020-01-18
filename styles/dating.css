@@ -1,3 +1,16 @@
+body{
+    background-color: lightskyblue;
+}
+.h4
+{
+    text-indent: 45px;
+
+}
 .indent{
-    text-indent: 70px;
+    text-indent: 90px;
+}
+.image
+{
+    height: 400px;
+    width: 450px;
 }
