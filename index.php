@@ -18,6 +18,18 @@ $f3->route('GET /', function (){
     $view = new Template();
     echo $view-> render('views/home.html');
 });
+//default route for personalInfo page
+$f3->route('GET /personalInfo', function (){
+    $view = new Template();
+    echo $view-> render('views/personalInfo.html');
+});
+
+//default route for profile page
+$f3->route('GET /profile', function (){
+    $view = new Template();
+    echo $view-> render('views/profile.html');
+});
+
 
 //run fat free
 $f3->run();

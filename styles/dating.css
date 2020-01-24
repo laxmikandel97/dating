@@ -1,6 +1,6 @@
-body{
-    background-color: lightskyblue;
-}
+/*body{*/
+/*    background-color: lightskyblue;*/
+/*}*/
 .h4
 {
     text-indent: 45px;
@@ -20,4 +20,5 @@ body{
 .h3
 {
     background-color:lightgray;
+    opacity: 0.5;
 }
