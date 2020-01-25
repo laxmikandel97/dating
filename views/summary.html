@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles/dating.css">
+    <title>Dating Site</title>
+</head>
+<body>
+<div class="container-fluid">
+    <p class="h3 ml-3 mt-2">Find Love &hearts;</p>
+</div>
+<div class="container border mt-3 clearfix">
+    <div class="row">
+        <div class="col-6">
+            <table class="table table-bordered mt-3 ml-3 mb-4">
+                <tbody>
+                <tr>
+                    <td>Name: {{@SESSION.firstName}} {{@SESSION.lastName}}</td>
+                </tr>
+                <tr>
+                    <td> Gender: {{@SESSION.gender}}</td>
+                </tr>
+                <tr>
+                    <td>Age:{{@SESSION.age}} </td>
+                </tr>
+                <tr>
+                    <td>Phone:{{@SESSION.phone}} </td>
+                </tr>
+                <tr>
+                    <td>Email:{{@SESSION.email}}</td>
+                </tr>
+                <tr>
+                    <td>State: {{@SESSION.state}}</td>
+                </tr>
+                <tr>
+                    <td>Seeking: {{@SESSION.seeking}}</td>
+                </tr>
+                <tr>
+                    <td>Interests: {{@SESSION.values}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-lg-6">
+            <div class="row  mt-0 ml-5">
+                <img class="img rounded " src="images/dummy.png"
+                     alt="Dating picture">
+            </div>
+            <div class="row ml-0">
+                <p class="h4 text-dark mt-4"> Biography:</p>
+            </div>
+            <div class="row ml-0">
+                <p><textarea class="textArea">{{@SESSION.inputText}}</textarea></p>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

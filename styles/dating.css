@@ -22,3 +22,15 @@
     background-color:lightgray;
     opacity: 0.5;
 }
+.textArea{
+    height:200px;
+    width: 300px;
+    font-size:14pt;
+}
+.select{
+    height: 30px;
+}
+.img{
+    height: 150px;
+    weidth:290px;
+}

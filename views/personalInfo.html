@@ -1,51 +1,53 @@
-<!--<!doctype html>-->
-<!--<html lang="en">-->
-<!--<head>-->
-<!--    &lt;!&ndash; Required meta tags &ndash;&gt;-->
-<!--    <meta charset="utf-8">-->
-<!--    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">-->
-<!--    &lt;!&ndash; Bootstrap CSS &ndash;&gt;-->
-<!--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"-->
-<!--          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">-->
-<!--    &lt;!&ndash;    <link rel="stylesheet" href="styles/dating.css">&ndash;&gt;-->
-<!--    <style>-->
-<!--        .h3 {-->
-<!--            background-color: lightgray;-->
-<!--            opacity: 0.5;-->
-<!--        }-->
-
-<!--    </style>-->
-<!--    <title>Dating Site</title>-->
-<include href="views/header.html">
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles/dating.css">
+    <title>Dating Site</title>
+</head>
 <body>
-<div class="container border mt-3">
+<div class="container-fluid">
+    <p class="h3 ml-3 mt-2">Find Love &hearts;</p>
+</div>
+<div class="container border mt-3 clearfix">
     <h1 class="ml-3 mt-4 mb-0">Personal Information</h1>
     <hr class="mt-0">
     <div class="ml-3">
-        <form method="post" action="profile" method="post">
+        <form action="profile" method="post">
             <div class="row">
                 <div class="form-group col-6">
                     <div class="row">
-                        <div class="col-12">
+                        <div class="col-12 col-sm-12">
                             <label class="font-weight-bold" for="firstName">First Name</label>
-                            <input type="text" class="form-control" id="firstName">
+                            <input type="text" class="form-control" name="firstName" id="firstName">
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-12">
-                            <label class="font-weight-bold" for="LastName">Last Name</label>
-                            <input type="text" class="form-control" id="LastName">
+                            <label class="font-weight-bold mt-2" for="LastName">Last Name</label>
+                            <input type="text" class="form-control" name="lastName" id="LastName">
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-12">
-                            <label class="font-weight-bold"> Gender</label>
+                            <label class="font-weight-bold mt-2" for="age"> Age</label>
+                            <input type="text" class="form-control" name="age" id='age' >
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <label class="font-weight-bold mt-2"> Gender</label>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="age" id="male">
+                                <input class="form-check-input" type="radio" name="gender" value="Male" id="male">
                                 <label class="radio-inline" for="male">
                                     Male
                                 </label>
-                                <input class="form-check-label ml-3" type="radio" name="age" id="female">
+                                <input class="form-check-label ml-3" type="radio"  value="Female" name="gender" id="female">
                                 <label class=" radio-inline" for="female">
                                     Female
                                 </label>
@@ -53,25 +55,25 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="form-group col-12">
+                        <div class="form-group col-12 mt-2">
                             <label class="font-weight-bold" for="phone">Phone</label>
-                            <input type="tel" class="form-control" id="phone">
+                            <input type="tel" class="form-control" name="phone" id="phone">
                         </div>
                     </div>
                 </div>
-                <div class="col-4">
-                    <div class="card" id="cardbody" style="width: 18rem; float: right">
+                <div class="col-lg-3">
+                    <div class="card" id="cardbody">
                         <div class="card-body">
                             <h5 class="card-title"><b>Note:</b></h5>
                             <p class="card-text">All information entered is protected by our privacy policy. Profile
-                                information can only be viewed by others with you permission.</p>
+                                information can only be viewed by others with you permission.
+                            </p>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="btn float-right">
+            <div class="btn float-lg-right">
                 <button  type="submit" class="btn btn-primary mb-4">Next>></button>
-
             </div>
         </form>
     </div>
