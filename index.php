@@ -39,9 +39,10 @@ $f3->route('POST /interests', function () {
 });
 $f3->route('POST /summary', function () {
     $interest=$_POST['interests'];
-    $_SESSION['values']=array();
-    foreach ($interest as $item) {
-        array_push($_SESSION['values'],$item);
+    if(!empty($interest)) {
+        foreach ($interest as $item) {
+            $_SESSION['interests'] .= $item . " ";
+        }
     }
     $view = new Template();
     echo $view->render('views/summary.html');
