@@ -38,12 +38,37 @@ $f3->route('POST /interests', function () {
     echo $view->render('views/interests.html');
 });
 $f3->route('POST /summary', function () {
-    $interest=$_POST['interests'];
-    if(!empty($interest)) {
+    //get the OutDoor interests
+    $interest = $_POST['interests'];
+    $_SESSION['values'] = array();
+    if (!empty($interest)) {
         foreach ($interest as $item) {
-            $_SESSION['interests'] .= $item . " ";
+            array_push($_SESSION['values'],$item);
         }
     }
+    foreach ($_SESSION['values'] as $items)
+    {
+        $_SESSION['outdoor'] .=$items ." ";
+    }
+//get the Indoor interests
+    $interests = $_POST['interestsIn'];
+    $_SESSION['valuesIn'] = array();
+    if (!empty($interests)) {
+        foreach ($interests as $itemIn) {
+            array_push($_SESSION['valuesIn'],$itemIn);
+        }
+    }
+    foreach ($_SESSION['valuesIn'] as $itemsIn)
+    {
+        $_SESSION['indoor'] .=$itemsIn ." ";
+    }
+
+
+//if(!empty($interest)) {
+//        foreach ($interest as $item) {
+//            $_SESSION['interests'] .= $item . " ";
+//        }
+//    }
     $view = new Template();
     echo $view->render('views/summary.html');
 });

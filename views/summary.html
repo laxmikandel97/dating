@@ -44,7 +44,7 @@
                     <td>Seeking: {{@SESSION.seeking}}</td>
                 </tr>
                 <tr>
-                    <td>Interests: {{@SESSION.interests}}</td>
+                    <td>Interests: {{@SESSION.indoor}} {{@SESSION.outdoor}}</td>
                 </tr>
                 </tbody>
             </table>
@@ -61,6 +61,9 @@
                 <p><textarea class="textArea">{{@SESSION.inputText}}</textarea></p>
             </div>
         </div>
+    </div>
+    <div class="btn float-lg-right">
+        <button  type="submit" class="btn btn-primary mb-4">Contact me</button>
     </div>
 </div>
 </body>
