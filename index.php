@@ -5,7 +5,7 @@ session_start();
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 //session_start();
-//require the autoloaded file
+//require the autoload file
 require_once('vendor/autoload.php');
 //create an instance of the base class
 $f3 = Base::instance();
@@ -29,6 +29,7 @@ $f3->route('POST /profile', function () {
     $view = new Template();
     echo $view->render('views/profile.html');
 });
+//default route for Interests page
 $f3->route('POST /interests', function () {
     $_SESSION['email'] = $_POST['email'];
     $_SESSION['state'] = $_POST['state'];
@@ -37,8 +38,9 @@ $f3->route('POST /interests', function () {
     $view = new Template();
     echo $view->render('views/interests.html');
 });
+//default route for summary page
 $f3->route('POST /summary', function () {
-    //get the OutDoor interests
+    //get the Outdoor interests
     $interest = $_POST['interests'];
     $_SESSION['values'] = array();
     if (!empty($interest)) {
@@ -62,13 +64,6 @@ $f3->route('POST /summary', function () {
     {
         $_SESSION['indoor'] .=$itemsIn ." ";
     }
-
-
-//if(!empty($interest)) {
-//        foreach ($interest as $item) {
-//            $_SESSION['interests'] .= $item . " ";
-//        }
-//    }
     $view = new Template();
     echo $view->render('views/summary.html');
 });
