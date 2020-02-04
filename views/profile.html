@@ -32,29 +32,27 @@
                     </div>
                     <div class="row">
                         <div class="col-12">
-                            <label class="font-weight-bold mt-2" for="state">State</label><br>
-                            <select class="select col-12" name="state" id="state">
-                                <option value="Washington">Washington</option>
-                                <option value="Oregon">Oregon</option>
-                                <option value="Idaho">Idaho</option>
-                                <option value="Wyoming">Wyoming</option>
+                            <label class="font-weight-bold mt-2">State</label><br>
+                            <select name="state">
+                                <repeat group="{{@states}}" value="{{@selectStates}}">
+                                    <option value="{{@selectStates}}"
+                                    >{{ucfirst(@selectStates)}}
+                                    </option>
+                                </repeat>
                             </select>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-12">
                             <label class="font-weight-bold mt-3"> Seeking</label>
-                            <div class="form-check">
-                                <label class="radio-inline" for="male">
-                                    <input class="form-check-input" type="radio" value="Male" name="seeking" id="male">
-                                    Male
-                                </label>
-                                <label class=" radio-inline" for="female">
-                                    <input class="form-check-label ml-3" type="radio" value="Female" name="seeking"
-                                           id="female">
-                                    Female
-                                </label>
-                            </div>
+                                <div class="form-check">
+                                    <repeat group="{{ @gender }}" value="{{ @seekingGenderOption }}">
+                                        <label><input type="radio" class="form-check-input"
+                                                      name="seekingGender"
+                                                      value="{{ @seekingGenderOption }}">{{ ucfirst(@seekingGenderOption) }}
+                                        </label><br>
+                                    </repeat>
+                                </div>
                         </div>
                     </div>
                 </div>

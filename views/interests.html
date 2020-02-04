@@ -24,44 +24,29 @@
         <form action="summary" method="post">
             <label class="font-weight-bold mt-2"> In-door Interests</label>
             <div class="row">
-                <div class="col-lg-3">
-                    <input type="checkbox" class="form-check-inline" name="interestsIn[]" value="TV">TV<br>
-                    <input type="checkbox" class="form-check-inline" name="interestsIn[]" value="Puzzles">Puzzles
-                </div>
-                <div class="col-lg-3">
-                    <input type="checkbox" class="form-check-inline" name="interestsIn[]" value="Movies">Movies<br>
-                    <input type="checkbox" class="form-check-inline" name="interestsIn[]" value="Reading">Reading
-                </div>
-                <div class="col-lg-3">
-                    <input type="checkbox" class="form-check-inline" name="interestsIn[]" value="Cooking">Cooking <br>
-                    <input type="checkbox" class="form-check-inline" name="interestsIn[]" value="Playing Cards">Playing
-                    Cards
-                </div>
-                <div class="col-lg-3">
-                    <input type="checkbox" class="form-check-inline" name="interestsIn[]" value="Board games">Board
-                    games<br>
-                    <input type="checkbox" class="form-check-inline" name="interestsIn[]" value="Video games">Video
-                    games
-                </div>
+                <repeat group="{{ @indoor }}" value="{{ @indoorOptions }}">
+                    <div class="col-lg-3">
+
+                        <label><input type="checkbox" class="form-check-inline
+                                      name="indoor[]"
+                                      value="{{ @indoorOptions }}">{{ ucfirst(@indoorOptions) }}
+                        </label><br>
+                    </div>
+                </repeat>
             </div>
             <!--row closed -->
             <label class="font-weight-bold mt-2"> Out-door Interests</label>
             <div class="row">
-                <div class="col-lg-3">
-                    <input type="checkbox" class="form-check-inline" name="interests[]" value="Hiking">Hiking<br>
-                    <input type="checkbox" class="form-check-inline" name="interests[]" value="Walking">Walking
-                </div>
-                <div class="col-lg-3">
-                    <input type="checkbox" class="form-check-inline" name="interests[]" value="Biking">Biking<br>
-                    <input type="checkbox" class="form-check-inline" name="interests[]" value="Climbing">Climbing
-                </div>
-                <div class="col-lg-3">
-                    <input type="checkbox" class="form-check-inline" name="interests[]" value="Swimming">Swimming <br>
-                </div>
-                <div class="col-lg-3">
-                    <input type="checkbox" class="form-check-inline" name="interests[]" value="Collecting stones">
-                    Collecting Stones<br>
-                </div>
+                <repeat group="{{ @outdoor }}" value="{{ @outdoorOptions }}">
+                    <div class="col-lg-3">
+
+                        <label><input type="checkbox" class="form-check-inline"
+                                      name="outdoor[]"
+                                      value="{{ @outdoorOptions }}">{{ ucfirst(@outdoorOptions) }}
+                        </label><br>
+                    </div>
+                </repeat>
+
             </div>
             <!--row closed -->
             <div class="btn float-lg-right">
