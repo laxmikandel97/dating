@@ -15,7 +15,7 @@ $f3 = Base::instance();
 $f3->set('DEBUG', 3);
 
 //Define arrays
-$f3->set('gender', array('male', 'female'));
+$f3->set('genders', array('male', 'female'));
 $f3->set('states', array('washington', 'oregon', 'idaho', 'wyoming'));
 $f3->set('indoor', array('tv', 'puzzles', 'movies','reading',
     'cooking','playing cards','board games','video games'));
@@ -57,10 +57,10 @@ $f3->route('GET|POST /personalInfo', function ($f3) {
 
 
         //Add data to hive personalInfo
-        $f3->set('firstName', $firstName);//$food and other used here are user input data stored variable
+        $f3->set('firstName', $firstName);
         $f3->set('lastName', $lastName);
         $f3->set('age', $age);
-        $f3->set('gender', $gender);
+        $f3->set('gender', $gender);//gender is the variable name for fatfree and $gender is the value user gave us
         $f3->set('phone',$phone);
 
 
@@ -75,11 +75,11 @@ $f3->route('GET|POST /personalInfo', function ($f3) {
         if (validForm()) {
 
             //Write data to Session
-            $_SESSION['firstName'] = $firstName;//food is the name and $food is the place where is store the user input
-//            $_SESSION['qty'] = $qty;
-//            $_SESSION['meal'] = $meal;
-//            $_SESSION['condiments'] = $selectedCondiments;
-//            $_SESSION['beverage'] = $drink;
+            $_SESSION['firstName'] = $firstName;//firstName is a session variable, storing user valid input in session variable
+            $_SESSION['lastName'] = $lastName;
+            $_SESSION['age'] = $age;
+            $_SESSION['phone'] = $phone;
+            $_SESSION['gender'] = $gender;
 
             //Redirect to profile
             $f3->reroute('/profile');

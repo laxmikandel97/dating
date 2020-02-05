@@ -12,39 +12,17 @@ function validForm()
         $f3->set("errors['lastName']", "Please enter  last name");
     }
 //AGE
-    if (!validAge($f3->get('age'))) {
+    if (!validAge($f3->get('age'))){ //get the value of the passed key age is key
         $isValid = false;
         $f3->set("errors['age']", "Please enter valid age between 18 to 118 ");
     }
     //PHONE
     if (!validPhone($f3->get('phone'))) {
         $isValid = false;
-        $f3->set("errors['phone']", "Please enter valid age between 18 to 118 ");
+        $f3->set("errors['phone']", "Please enter valid 10 digit phone number ");
     }
-
-
-//    if (!validQty($f3->get('qty'))) {
-//
-//        $isValid = false;
-//        $f3->set("errors['qty']", "Please enter 1 or more");
-//    }
-//
-//    if (!validMeal($f3->get('meal'))) {
-//
-//        $isValid = false;
-//        $f3->set("errors['meal']", "Please select a meal");
-//    }
-//
-//    if (!validCondiments($f3->get('cond'))) {
-//
-//        $isValid = false;
-//        $f3->set("errors['cond']", "Invalid selection");
-//    }
-
     return $isValid;
 }
-
-//
 //validate first name
 function validFirstName($firstName)//$food is the place where user input food is stored
 {
@@ -71,20 +49,10 @@ function validAge($age)
 function validPhone($phone)
 {
     $phoneResult=false;
-    if(ctype_alnum($phone)){
+    if(strlen($phone)==10&&!empty($phone)&&ctype_digit($phone)){
         $phoneResult=true;
     }
-    if(!empty($phone)){
-        $phoneResult=true;
-
-    }
-//    $phoneNumber = strlen((string)$phone);
-//    if($phoneNumber==10)
-//    {
-//        $phoneResult=true;
-//    }
     return $phoneResult;
-
 }
 
 ////validate email
