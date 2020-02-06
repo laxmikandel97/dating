@@ -39,12 +39,9 @@ $f3->route('GET|POST /personalInfo', function ($f3) {
          $lastName= $_POST['lastName'];
         $age = $_POST['age'];
         $phone=$_POST['phone'];
-
         $gender=$_POST['gender'];
-        //Get data from profile form
-//        $email=$_POST['email'];
-//        $state=$_POST['state'];
-//        $seeking=$_POST['seekingGender'];
+
+
         //Get data form Indoor
 
 
@@ -64,14 +61,10 @@ $f3->route('GET|POST /personalInfo', function ($f3) {
         $f3->set('phone',$phone);
 
 
-        //Add data to hive profile
-//        $f3->set('email',$email);
-//        $f3->set('state',$state);
-//        $f3->set('seeking',$seeking);
 
 
 
-        //If data is valid
+        //If data is valid store them in session variable
         if (validForm()) {
 
             //Write data to Session
@@ -89,26 +82,88 @@ $f3->route('GET|POST /personalInfo', function ($f3) {
     echo $view->render('views/personalInfo.html');
 });
 //default route for profile page
-$f3->route('GET|POST /profile', function () {
-    $_SESSION['firstName'] = $_POST['firstName'];
+$f3->route('GET|POST /profile', function ($f3) {
+    //USED FOR PREVIOUS ASSIGNMENT TO GET THE USER INPUT VALUE AND DISPLAY THEM IN THE SUMMARY PAGE
+    /*$_SESSION['firstName'] = $_POST['firstName'];
     $_SESSION['lastName'] = $_POST['lastName'];
     $_SESSION['age'] = $_POST['age'];
     $_SESSION['gender'] = $_POST['gender'];
-    $_SESSION['phone'] = $_POST['phone'];
+    $_SESSION['phone'] = $_POST['phone'];*/
+
+
+    //get the values form the form if the server request is POST
+    if($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+        //Get data from profile form
+        $email = $_POST['email'];
+        $state = $_POST['state'];
+        $seeking = $_POST['seekingGender'];
+
+        //Add data to hive profile
+        $f3->set('email',$email);
+        $f3->set('state',$state);
+        $f3->set('seeking',$seeking);
+
+        //If data is valid store them in session variable
+        if (profileInfoValidation()) {
+            //Write data to Session
+            $_SESSION['email'] = $email;
+            $_SESSION['state'] = $state;
+            $_SESSION['seeking'] = $seeking;
+//
+
+            //Redirect to profile
+            $f3->reroute('/interests');
+        }
+    }
     $view = new Template();
     echo $view->render('views/profile.html');
 });
 //default route for Interests page
-$f3->route('POST /interests', function () {
-    $_SESSION['email'] = $_POST['email'];
-    $_SESSION['state'] = $_POST['state'];
-    $_SESSION['seeking'] = $_POST['seeking'];
-    $_SESSION['inputText'] = $_POST['inputText'];
+$f3->route('GET|POST /interests', function ($f3) {
+    //USED TO PRINT THE SUMMARY
+//    $_SESSION['email'] = $_POST['email'];
+//    $_SESSION['state'] = $_POST['state'];
+//    $_SESSION['seeking'] = $_POST['seeking'];
+//    $_SESSION['inputText'] = $_POST['inputText'];
+
+
+    $selectedIndoors = array();
+    if($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+
+        //I AM NOT ABLE TO SEE THE THE SELECTED CHECK BOXES LIST
+        //Get data from form
+        if (!empty($_POST['indoor'])) {
+//            $selectedIndoors = $_POST['indoor'];
+//            var_dump($_POST['indoor']);
+                echo($_POST['indoor']);
+
+        }
+//        echo array_values($selectedIndoors);
+//        echo sizeof($selectedIndoors);
+
+        //Add data to hive
+        $f3->set('indoorInterests', $selectedIndoors);
+
+        //If data is valid
+//        echo sizeof($selectedIndoors);
+        if (validIndoor($selectedIndoors)) {
+
+            //Write data to Session
+
+            $_SESSION['indoor'] = $selectedIndoors;
+
+            //Redirect to Summary
+            $f3->reroute('/summary');
+        }
+    }
+
     $view = new Template();
     echo $view->render('views/interests.html');
 });
 //default route for summary page
-$f3->route('POST /summary', function () {
+$f3->route('GET|POST /summary', function () {
     //get the Outdoor interests
     $interest = $_POST['interests'];
     $_SESSION['values'] = array();

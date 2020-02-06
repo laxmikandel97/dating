@@ -21,13 +21,16 @@
     <h1 class="ml-3 mt-4 mb-0">PROFILE </h1>
     <hr class="mt-0">
     <div class="ml-3">
-        <form action="interests" method="post">
+        <form action="#" method="post">
             <div class="row">
                 <div class="form-group col-6">
                     <div class="row">
                         <div class="col-12">
                             <label class="font-weight-bold" for="email">Email</label>
-                            <input type="text" class="form-control" name="email" id="email">
+                            <input type="text" class="form-control" name="email" id="email" value="{{@email}}">
+                            <check if="{{ @errors['email'] }}">
+                                <span class="err">{{ @errors['email'] }}</span>
+                            </check>
                         </div>
                     </div>
                     <div class="row">
@@ -36,7 +39,9 @@
                             <select name="state">
                                 <repeat group="{{@states}}" value="{{@selectStates}}">
                                     <option value="{{@selectStates}}"
-                                    >{{ucfirst(@selectStates)}}
+                                    <check if = "{{@state==@selectStates}}">
+                                        selected="selected"
+                                    </check>>{{ucfirst(@selectStates)}}
                                     </option>
                                 </repeat>
                             </select>
@@ -46,10 +51,11 @@
                         <div class="col-12">
                             <label class="font-weight-bold mt-3"> Seeking</label>
                                 <div class="form-check">
-                                    <repeat group="{{ @gender }}" value="{{ @seekingGenderOption }}">
+                                    <repeat group="{{ @genders }}" value="{{ @seekingGenderOption }}">
                                         <label><input type="radio" class="form-check-input"
                                                       name="seekingGender"
-                                                      value="{{ @seekingGenderOption }}">{{ ucfirst(@seekingGenderOption) }}
+                                                      value="{{ @seekingGenderOption }}"
+                                            <check if = "{{@seeking== @seekingGenderOption}}"> checked="checked"</check>>{{ ucfirst(@seekingGenderOption) }}
                                         </label><br>
                                     </repeat>
                                 </div>

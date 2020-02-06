@@ -4,13 +4,20 @@ function validForm()
 {
     global $f3;
     $isValid = true;//flag
-//FIRST AND LAST NAME
-    if (!validFirstName($f3->get('firstName')) || (!validLastName($f3->get('lastName')))) {
-
+//FIRST  NAME
+    if (!validFirstName($f3->get('firstName'))) {
         $isValid = false;
         $f3->set("errors['firstName']", "Please enter first name ");
-        $f3->set("errors['lastName']", "Please enter  last name");
     }
+
+    //LAST NAME
+    if(!validLastName($f3->get('lastName')))
+    {
+        $isValid = false;
+        $f3->set("errors['lastName']", "Please enter last name ");
+    }
+
+
 //AGE
     if (!validAge($f3->get('age'))){ //get the value of the passed key age is key
         $isValid = false;
@@ -55,12 +62,39 @@ function validPhone($phone)
     return $phoneResult;
 }
 
-////validate email
-//validEmail()
+//validate email
+function validEmail($email)
+{
+    $emailResult=false;
+    if (filter_var($email,FILTER_VALIDATE_EMAIL)&&!empty($email)) {
+        $emailResult=true;
+    }
+    return $emailResult;
+}
+
+function validIndoor($indoor)
+{
+    global $f3;
+//    echo implode($indoor);
+//   echo  sizeof($indoor);
+        return(in_array($indoor, $f3->get('indoor')));
 //
-//
-//
-////validate outdoor
+
+}
+
+//profile page validation
+function profileInfoValidation()
+{
+    global $f3;
+    $valid = true;//flag
+    if (!validEmail($f3->get('email'))) {
+        $valid = false;
+        $f3->set("errors['email']", "Please enter valid email address ");
+    }
+    return $valid;
+}
+
+//validate outdoor
 //validOutdoor()
 //
 //
