@@ -30,9 +30,11 @@
                         <label><input type="checkbox" class="form-check-inline"
                                       name="indoor[]"
                                       value="{{ @indoorOptions }}"
-                            <check if="{{ in_array(@indoorOptions, @indoorInterests)}}">
+
+                            <check if="{{ isset(@indoorInterests)&& in_array(@indoorOptions, @indoorInterests)}}">
                                 checked="checked"
-                            </check>>{{ ucfirst(@indoorOptions) }}
+                            </check>
+                            >{{ ucfirst(@indoorOptions) }}
                         </label><br>
                     </div>
                 </repeat>
@@ -48,9 +50,10 @@
                         <label><input type="checkbox" class="form-check-inline"
                                       name="outdoor[]"
                                       value="{{ @outdoorOptions }}"
-                            <check if="{{ in_array(@outdoorOptions, @outdoorInterests)}}">
+                            <check if="{{ isset(@outdoorInterests)&&in_array(@outdoorOptions, @outdoorInterests)}}">
                                 checked="checked"
-                            </check>>{{ ucfirst(@outdoorOptions) }}
+                            </check>
+                            >{{ ucfirst(@outdoorOptions) }}
                         </label><br>
                     </div>
                 </repeat>
