@@ -23,10 +23,10 @@
             <table class="table table-bordered mt-3">
                 <tbody>
                 <tr>
-                    <td>Name: {{@SESSION.firstName}} {{@SESSION.lastName}}</td>
+                    <td>Name: {{ucfirst(@SESSION.firstName)}} {{ucfirst(@SESSION.lastName)}}</td>
                 </tr>
                 <tr>
-                    <td> Gender: {{@SESSION.gender}}</td>
+                    <td> Gender: {{ucfirst(@SESSION.gender)}}</td>
                 </tr>
                 <tr>
                     <td>Age:{{@SESSION.age}} </td>
@@ -35,16 +35,16 @@
                     <td>Phone:{{@SESSION.phone}} </td>
                 </tr>
                 <tr>
-                    <td>Email:{{@SESSION.email}}</td>
+                    <td>Email:{{ucfirst(@SESSION.email)}}</td>
                 </tr>
                 <tr>
-                    <td>State: {{@SESSION.state}}</td>
+                    <td>State: {{ucfirst(@SESSION.state)}}</td>
                 </tr>
                 <tr>
-                    <td>Seeking: {{@SESSION.seeking}}</td>
+                    <td>Seeking: {{ucfirst(@SESSION.seeking)}}</td>
                 </tr>
                 <tr>
-                    <td>Interests: {{@SESSION.indoor}} {{@SESSION.outdoor}}</td>
+                    <td>Interests: {{ ucwords(implode(", ", @SESSION.indoor)) }}, {{ ucwords(implode(", ", @SESSION.outdoor)) }}</td>
                 </tr>
                 </tbody>
             </table>
@@ -58,7 +58,7 @@
                 <p class="h4 text-dark mt-4"> Biography:</p>
             </div>
             <div class="row ml-0">
-                <p><textarea class="textArea">{{@SESSION.inputText}}</textarea></p>
+                <p><textarea class="textArea">{{ucfirst(@SESSION.inputText)}}</textarea></p>
             </div>
         </div>
     </div>
