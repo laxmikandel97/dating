@@ -27,30 +27,41 @@
                 <repeat group="{{ @indoor }}" value="{{ @indoorOptions }}">
                     <div class="col-lg-3">
 
-                        <label><input type="checkbox" class="form-check-inline
+                        <label><input type="checkbox" class="form-check-inline"
                                       name="indoor[]"
-                                      value="{{ @indoorOptions }}">{{ ucfirst(@indoorOptions) }}
+                                      value="{{ @indoorOptions }}"
+                            <check if="{{ in_array(@indoorOptions, @indoorInterests)}}">
+                                checked="checked"
+                            </check>>{{ ucfirst(@indoorOptions) }}
                         </label><br>
                     </div>
                 </repeat>
+                <check if="{{ @errors['indoor'] }}">
+                    <span class="err">{{ @errors['indoor'] }}</span>
+                </check>
             </div>
             <!--row closed -->
             <label class="font-weight-bold mt-2"> Out-door Interests</label>
             <div class="row">
                 <repeat group="{{ @outdoor }}" value="{{ @outdoorOptions }}">
                     <div class="col-lg-3">
-
                         <label><input type="checkbox" class="form-check-inline"
                                       name="outdoor[]"
-                                      value="{{ @outdoorOptions }}">{{ ucfirst(@outdoorOptions) }}
+                                      value="{{ @outdoorOptions }}"
+                            <check if="{{ in_array(@outdoorOptions, @outdoorInterests)}}">
+                                checked="checked"
+                            </check>>{{ ucfirst(@outdoorOptions) }}
                         </label><br>
                     </div>
                 </repeat>
+                <check if="{{ @errors['outdoor'] }}">
+                    <span class="err">{{ @errors['outdoor'] }}</span>
+                </check>
 
             </div>
             <!--row closed -->
             <div class="btn float-lg-right">
-                <button type="submit" class="btn btn-primary mb-4">Next>></button>
+                <button type="submit" name="submit" class="btn btn-primary mb-4">Next>></button>
             </div>
         </form>
     </div>

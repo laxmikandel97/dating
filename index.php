@@ -7,7 +7,7 @@ error_reporting(E_ALL);
 //session_start();
 //require the autoload file
 require_once('vendor/autoload.php');
-require_once ('model/validate.php');
+require_once('model/validate.php');
 //create an instance of the base class
 $f3 = Base::instance();
 
@@ -17,11 +17,10 @@ $f3->set('DEBUG', 3);
 //Define arrays
 $f3->set('genders', array('male', 'female'));
 $f3->set('states', array('washington', 'oregon', 'idaho', 'wyoming'));
-$f3->set('indoor', array('tv', 'puzzles', 'movies','reading',
-    'cooking','playing cards','board games','video games'));
-$f3->set('outdoor', array('hiking', 'walking', 'biking','climbing',
-    'swimming','collecting stones'));
-
+$f3->set('indoor', array('tv', 'puzzles', 'movies', 'reading',
+    'cooking', 'playing cards', 'board games', 'video games'));
+$f3->set('outdoor', array('hiking', 'walking', 'biking', 'climbing',
+    'swimming', 'collecting stones'));
 
 
 //Define a default route
@@ -32,25 +31,20 @@ $f3->route('GET /', function () {
 //default route for personalInfo page
 $f3->route('GET|POST /personalInfo', function ($f3) {
 
-    if($_SERVER['REQUEST_METHOD'] == 'POST') {
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         //Get data from personalInfo from by using their name
         $firstName = $_POST['firstName'];
-         $lastName= $_POST['lastName'];
+        $lastName = $_POST['lastName'];
         $age = $_POST['age'];
-        $phone=$_POST['phone'];
-        $gender=$_POST['gender'];
+        $phone = $_POST['phone'];
+        $gender = $_POST['gender'];
 
 
         //Get data form Indoor
 
 
-
-
-
         //get the data form outdoor
-
-
 
 
         //Add data to hive personalInfo
@@ -58,10 +52,7 @@ $f3->route('GET|POST /personalInfo', function ($f3) {
         $f3->set('lastName', $lastName);
         $f3->set('age', $age);
         $f3->set('gender', $gender);//gender is the variable name for fatfree and $gender is the value user gave us
-        $f3->set('phone',$phone);
-
-
-
+        $f3->set('phone', $phone);
 
 
         //If data is valid store them in session variable
@@ -92,7 +83,7 @@ $f3->route('GET|POST /profile', function ($f3) {
 
 
     //get the values form the form if the server request is POST
-    if($_SERVER['REQUEST_METHOD'] == 'POST') {
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         //Get data from profile form
         $email = $_POST['email'];
@@ -100,9 +91,9 @@ $f3->route('GET|POST /profile', function ($f3) {
         $seeking = $_POST['seekingGender'];
 
         //Add data to hive profile
-        $f3->set('email',$email);
-        $f3->set('state',$state);
-        $f3->set('seeking',$seeking);
+        $f3->set('email', $email);
+        $f3->set('state', $state);
+        $f3->set('seeking', $seeking);
 
         //If data is valid store them in session variable
         if (profileInfoValidation()) {
@@ -129,35 +120,45 @@ $f3->route('GET|POST /interests', function ($f3) {
 
 
     $selectedIndoors = array();
-    if($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $selectedOutdoors = array();
+
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
-        //I AM NOT ABLE TO SEE THE THE SELECTED CHECK BOXES LIST
-        //Get data from form
+        //Get data from indoor
+//            var_dump($_POST);
         if (!empty($_POST['indoor'])) {
 //            $selectedIndoors = $_POST['indoor'];
-//            var_dump($_POST['indoor']);
-                echo($_POST['indoor']);
+            foreach ($_POST['indoor'] as $value) {
+                array_push($selectedIndoors, $value);
+            }
+//                var_dump($selectedIndoors);
+        }
+
+
+        //Get the data form outdoor
+        if (!empty($_POST['outdoor'])) {
+            foreach ($_POST['outdoor'] as $value) {
+                array_push($selectedOutdoors, $value);
+            }
+//            var_dump($selectedOutdoors);
 
         }
-//        echo array_values($selectedIndoors);
-//        echo sizeof($selectedIndoors);
 
         //Add data to hive
         $f3->set('indoorInterests', $selectedIndoors);
+        $f3->set('outdoorInterests', $selectedOutdoors);
 
         //If data is valid
-//        echo sizeof($selectedIndoors);
-        if (validIndoor($selectedIndoors)) {
-
+        if (interests()) {
             //Write data to Session
-
             $_SESSION['indoor'] = $selectedIndoors;
+            $_SESSION['outdoor'] = $selectedOutdoors;
 
             //Redirect to Summary
             $f3->reroute('/summary');
         }
-    }
+    }//end of request if
 
     $view = new Template();
     echo $view->render('views/interests.html');
@@ -169,24 +170,22 @@ $f3->route('GET|POST /summary', function () {
     $_SESSION['values'] = array();
     if (!empty($interest)) {
         foreach ($interest as $item) {
-            array_push($_SESSION['values'],$item);
+            array_push($_SESSION['values'], $item);
         }
     }
-    foreach ($_SESSION['values'] as $items)
-    {
-        $_SESSION['outdoor'] .=$items ." ";
+    foreach ($_SESSION['values'] as $items) {
+        $_SESSION['outdoor'] .= $items . " ";
     }
 //get the Indoor interests
     $interests = $_POST['interestsIn'];
     $_SESSION['valuesIn'] = array();
     if (!empty($interests)) {
         foreach ($interests as $itemIn) {
-            array_push($_SESSION['valuesIn'],$itemIn);
+            array_push($_SESSION['valuesIn'], $itemIn);
         }
     }
-    foreach ($_SESSION['valuesIn'] as $itemsIn)
-    {
-        $_SESSION['indoor'] .=$itemsIn ." ";
+    foreach ($_SESSION['valuesIn'] as $itemsIn) {
+        $_SESSION['indoor'] .= $itemsIn . " ";
     }
     $view = new Template();
     echo $view->render('views/summary.html');
