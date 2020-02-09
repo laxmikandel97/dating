@@ -1,4 +1,11 @@
 <?php
+/**
+ * Validating required fields
+ * Name
+ * Age
+ * Phone
+ * @return bool
+ */
 function validForm()
 {
     global $f3;
@@ -25,17 +32,32 @@ function validForm()
     }
     return $isValid;
 }
-//validate first name
+
+/**
+ * Validating First Name
+ * @param $firstName
+ * @return bool
+ */
 function validFirstName($firstName)//$food is the place where user input food is stored
 {
     return !empty($firstName) && ctype_alpha($firstName);
 }
-//validate last name
+
+/**
+ * Validating Last Name
+ * @param $last
+ * @return bool
+ */
 function validLastName($last)//$food is the place where user input food is stored
 {
     return !empty($last) && ctype_alpha($last);
 }
-//validate age
+
+/**
+ * Validating Age
+ * @param $age
+ * @return bool
+ */
 function validAge($age)
 {
     $result = false;
@@ -44,7 +66,12 @@ function validAge($age)
     }
     return $result;
 }
-//validate Phone
+
+/**
+ * Validating Phone Number
+ * @param $phone
+ * @return bool
+ */
 function validPhone($phone)
 {
     $phoneResult = false;
@@ -53,7 +80,12 @@ function validPhone($phone)
     }
     return $phoneResult;
 }
-//validate email
+
+/**
+ * Validating email
+ * @param $email
+ * @return bool
+ */
 function validEmail($email)
 {
     $emailResult = false;
@@ -62,6 +94,12 @@ function validEmail($email)
     }
     return $emailResult;
 }
+
+/**
+ * Validating indoor interest
+ * @param $indoor
+ * @return bool
+ */
 function validIndoor($indoor)
 {
     global $f3;
@@ -73,15 +111,19 @@ function validIndoor($indoor)
     foreach ($indoor as $item1) {
         if (in_array($item1, $f3->get('indoor'))) {
             $validCheck = true;
-        }
-        else{
-            $validCheck=false;
+        } else {
+            $validCheck = false;
             return $validCheck;
         }
     }
     return $validCheck;
 }
-//validate outdoor
+
+/**
+ *  * Validating outdoor interest
+ * @param $outdoor
+ * @return bool
+ */
 function validOutdoor($outdoor)
 {
     global $f3;
@@ -93,14 +135,18 @@ function validOutdoor($outdoor)
     foreach ($outdoor as $item2) {
         if (in_array($item2, $f3->get('outdoor'))) {
             $validCheck = true;
-        }
-        else{
-            $validCheck=false;
+        } else {
+            $validCheck = false;
             return $validCheck;
         }
     }
     return $validCheck;
 }
+
+/**
+ * validating interests
+ * @return bool
+ */
 function interests()
 {
     global $f3;
@@ -110,15 +156,18 @@ function interests()
         $f3->set("errors['indoor']", "NOTE: Please select all valid values 
 for indoor interests!");
     }
-    if(!validOutdoor($f3->get('outdoorInterests')))
-    {
+    if (!validOutdoor($f3->get('outdoorInterests'))) {
         $validInterest = false;
         $f3->set("errors['outdoor']", "NOTE: Please select all 
 valid values for outdoor interests!");
     }
     return $validInterest;
 }
-//profile page validation
+
+/**
+ * Profile form information validation (Email)
+ * @return bool
+ */
 function profileInfoValidation()
 {
     global $f3;

@@ -6,8 +6,8 @@ ini_set('display_errors', 1);
 error_reporting(E_ALL);
 //session_start();
 //require the autoload file
-require_once ('vendor/autoload.php');
-require_once ('model/validate.php');
+require_once('vendor/autoload.php');
+require_once('model/validate.php');
 //create an instance of the base class
 $f3 = Base::instance();
 //Turn on Fat-Free error reporting
@@ -42,16 +42,13 @@ $f3->set('outdoor', array(
     'collecting stones'
 ));
 //Define a default route
-$f3->route('GET /', function ()
-{
+$f3->route('GET /', function () {
     $view = new Template();
     echo $view->render('views/home.html');
 });
 //default route for personalInfo page
-$f3->route('GET|POST /personalInfo', function ($f3)
-{
-    if ($_SERVER['REQUEST_METHOD'] == 'POST')
-    {
+$f3->route('GET|POST /personalInfo', function ($f3) {
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         //Get data from personalInfo from by using their name
         $firstName = $_POST['firstName'];
         $lastName = $_POST['lastName'];
@@ -65,8 +62,7 @@ $f3->route('GET|POST /personalInfo', function ($f3)
         $f3->set('gender', $gender); //gender is the variable name for fat free and $gender is the value user gave us
         $f3->set('phone', $phone);
         //If data is valid store them in session variable
-        if (validForm())
-        {
+        if (validForm()) {
             //Write data to Session
             $_SESSION['firstName'] = $firstName; //firstName is a session variable, storing user valid input in session variable
             $_SESSION['lastName'] = $lastName;
@@ -81,11 +77,9 @@ $f3->route('GET|POST /personalInfo', function ($f3)
     echo $view->render('views/personalInfo.html');
 });
 //default route for profile page
-$f3->route('GET|POST /profile', function ($f3)
-{
+$f3->route('GET|POST /profile', function ($f3) {
     //get the values form the form if the server request is POST
-    if ($_SERVER['REQUEST_METHOD'] == 'POST')
-    {
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         //Get data from profile form
         $email = $_POST['email'];
         $state = $_POST['state'];
@@ -97,8 +91,7 @@ $f3->route('GET|POST /profile', function ($f3)
         $f3->set('seeking', $seeking);
         $f3->set('inputText', $inputText);
         //If data is valid store them in session variable
-        if (profileInfoValidation())
-        {
+        if (profileInfoValidation()) {
             //Write data to Session
             $_SESSION['email'] = $email;
             $_SESSION['state'] = $state;
@@ -112,29 +105,23 @@ $f3->route('GET|POST /profile', function ($f3)
     echo $view->render('views/profile.html');
 });
 //default route for Interests page
-$f3->route('GET|POST /interests', function ($f3)
-{
+$f3->route('GET|POST /interests', function ($f3) {
     $selectedIndoors = array();
     $selectedOutdoors = array();
-    if ($_SERVER['REQUEST_METHOD'] == 'POST')
-    {
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         //Get data from indoor
         //            var_dump($_POST);
-        if (!empty($_POST['indoor']))
-        {
+        if (!empty($_POST['indoor'])) {
             //            $selectedIndoors = $_POST['indoor'];
-            foreach ($_POST['indoor'] as $value)
-            {
+            foreach ($_POST['indoor'] as $value) {
                 array_push($selectedIndoors, $value);
             }
             //                var_dump($selectedIndoors);
 
         }
         //Get the data form outdoor
-        if (!empty($_POST['outdoor']))
-        {
-            foreach ($_POST['outdoor'] as $value)
-            {
+        if (!empty($_POST['outdoor'])) {
+            foreach ($_POST['outdoor'] as $value) {
                 array_push($selectedOutdoors, $value);
             }
             //            var_dump($selectedOutdoors);
@@ -144,8 +131,7 @@ $f3->route('GET|POST /interests', function ($f3)
         $f3->set('indoorInterests', $selectedIndoors);
         $f3->set('outdoorInterests', $selectedOutdoors);
         //If data is valid
-        if (interests())
-        {
+        if (interests()) {
             //Write data to Session
             $_SESSION['indoor'] = $selectedIndoors;
             $_SESSION['outdoor'] = $selectedOutdoors;
@@ -157,8 +143,7 @@ $f3->route('GET|POST /interests', function ($f3)
     echo $view->render('views/interests.html');
 });
 //default route for summary page
-$f3->route('GET|POST /summary', function ($f3)
-{
+$f3->route('GET|POST /summary', function ($f3) {
     $view = new Template();
     echo $view->render('views/summary.html');
 });
