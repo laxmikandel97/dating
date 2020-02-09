@@ -38,10 +38,10 @@
                         </label><br>
                     </div>
                 </repeat>
-                <check if="{{ @errors['indoor'] }}">
-                    <span class="err">{{ @errors['indoor'] }}</span>
-                </check>
             </div>
+            <check if="{{ @errors['indoor'] }}">
+                <span class="err">{{ @errors['indoor'] }}</span>
+            </check><br>
             <!--row closed -->
             <label class="font-weight-bold mt-2"> Out-door Interests</label>
             <div class="row">
@@ -50,17 +50,17 @@
                         <label><input type="checkbox" class="form-check-inline"
                                       name="outdoor[]"
                                       value="{{ @outdoorOptions }}"
-                            <check if="{{ isset(@outdoorInterests)&&in_array(@outdoorOptions, @outdoorInterests)}}">
+                            <check if="{{ isset(@outdoorInterests) && in_array(@outdoorOptions, @outdoorInterests)}}">
                                 checked="checked"
                             </check>
                             >{{ ucfirst(@outdoorOptions) }}
                         </label><br>
                     </div>
                 </repeat>
-                <check if="{{ @errors['outdoor'] }}">
-                    <span class="err">{{ @errors['outdoor'] }}</span>
-                </check>
             </div>
+            <check if="{{ @errors['outdoor'] }}">
+                <span class="err">{{ @errors['outdoor'] }}</span>
+            </check><br>
             <!--row closed -->
             <div class="btn float-lg-right">
                 <button type="submit" name="submit" class="btn btn-primary mb-4">Next>></button>

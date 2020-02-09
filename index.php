@@ -62,7 +62,7 @@ $f3->route('GET|POST /personalInfo', function ($f3)
         $f3->set('firstName', $firstName);
         $f3->set('lastName', $lastName);
         $f3->set('age', $age);
-        $f3->set('gender', $gender); //gender is the variable name for fatfree and $gender is the value user gave us
+        $f3->set('gender', $gender); //gender is the variable name for fat free and $gender is the value user gave us
         $f3->set('phone', $phone);
         //If data is valid store them in session variable
         if (validForm())
