@@ -1,8 +1,12 @@
 <?php
-
 /**
  * Class DatingController
+ * @package dating
+ * @subpackage contoller
+ * @author  Laxmi Kandel
+ *
  */
+
 class DatingController
 {
     private $_f3; //router
@@ -41,6 +45,7 @@ class DatingController
             $this->_f3->set('age', $age);
             $this->_f3->set('gender', $gender);
             $this->_f3->set('phone', $phone);
+            $this->_f3->set('checkBox', checkbox);
 
             //check to see if the check box is checked if checked instantiate premiumMember class
             $checkBox = isset($_POST['checkbox']);

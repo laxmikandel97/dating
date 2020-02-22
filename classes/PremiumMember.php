@@ -1,7 +1,9 @@
 <?php
-
 /**
  * Class PremiumMember
+ * @package dating
+ * @subpackage classes
+ * @author  Laxmi Kandel
  */
 class PremiumMember extends Member
 {
