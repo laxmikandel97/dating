@@ -33,7 +33,7 @@ function validForm()
 
     if(!validGender($f3->get('gender'))){
         $isValid = false;
-        $f3->set("errors['gender']", "Please valid gender ");
+        $f3->set("errors['gender']", "Please select valid gender ");
     }
     return $isValid;
 }
@@ -116,6 +116,19 @@ function validEmail($email)
     return $emailResult;
 }
 
+
+function validState($state)
+{
+    $checkState=false;
+    global $f3;
+    if(in_array($state, $f3->get('states')))
+    {
+        $checkState = true;
+    }
+
+    return $checkState;
+}
+
 /**
  * Validating indoor interest
  * @param $indoor
@@ -196,6 +209,17 @@ function profileInfoValidation()
     if (!validEmail($f3->get('email'))) {
         $valid = false;
         $f3->set("errors['email']", "Please enter valid email address ");
+    }
+
+    if(!validState($f3->get('state'))){
+        $valid = false;
+        $f3->set("errors['state']", "Please select valid state  ");
+    }
+
+    if(!validGender($f3->get('seeking')))
+    {
+        $valid = false;
+        $f3->set("errors['gender']", "Please select valid gender ");
     }
     return $valid;
 }
