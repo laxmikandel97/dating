@@ -31,7 +31,7 @@ function validForm()
         $f3->set("errors['phone']", "Please enter valid 10 digit phone number ");
     }
 
-    if(!validGender($f3->get('gender'))){
+    if (!validGender($f3->get('gender'))) {
         $isValid = false;
         $f3->set("errors['gender']", "Please select valid gender ");
     }
@@ -45,7 +45,7 @@ function validForm()
  */
 function validFirstName($firstName)//$food is the place where user input food is stored
 {
-$firstName =  trim($firstName);
+    $firstName = trim($firstName);
     return !empty($firstName) && ctype_alpha($firstName);
 }
 
@@ -93,15 +93,15 @@ function validPhone($phone)
 
 function validGender($gender)
 {
-    $genderCheck=false;
+    $genderCheck = false;
     global $f3;
 
-    if(empty($gender)||in_array($gender, $f3->get('genders')))
-    {
-            $genderCheck = true;
+    if (empty($gender) || in_array($gender, $f3->get('genders'))) {
+        $genderCheck = true;
     }
     return $genderCheck;
 }
+
 /**
  * Validating email
  * @param $email
@@ -116,13 +116,16 @@ function validEmail($email)
     return $emailResult;
 }
 
-
+/**
+ * checking for valid state
+ * @param $state
+ * @return bool
+ */
 function validState($state)
 {
-    $checkState=false;
+    $checkState = false;
     global $f3;
-    if(in_array($state, $f3->get('states')))
-    {
+    if (in_array($state, $f3->get('states'))) {
         $checkState = true;
     }
 
@@ -136,6 +139,7 @@ function validState($state)
  */
 function validIndoor($indoor)
 {
+    var_dump($indoor);
     global $f3;
     $validCheck = false;
     if (empty($indoor)) {
@@ -147,7 +151,7 @@ function validIndoor($indoor)
             $validCheck = true;
         } else {
             $validCheck = false;
-            return $validCheck;
+//            return $validCheck;
         }
     }
     return $validCheck;
@@ -211,13 +215,12 @@ function profileInfoValidation()
         $f3->set("errors['email']", "Please enter valid email address ");
     }
 
-    if(!validState($f3->get('state'))){
+    if (!validState($f3->get('state'))) {
         $valid = false;
         $f3->set("errors['state']", "Please select valid state  ");
     }
 
-    if(!validGender($f3->get('seeking')))
-    {
+    if (!validGender($f3->get('seeking'))) {
         $valid = false;
         $f3->set("errors['gender']", "Please select valid gender ");
     }
