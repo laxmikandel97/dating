@@ -14,7 +14,7 @@ class PremiumMember extends Member
 //        $this->_outDoorInterests = $outDoorInterests;
 //
 //    }
-    function __Construct($fName, $lName,$age,$gender,$phone)
+    function __construct($fName, $lName,$age,$gender,$phone)
     {
         parent::__construct($fName, $lName,$age,$gender,$phone);
 

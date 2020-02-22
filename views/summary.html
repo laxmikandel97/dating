@@ -23,16 +23,16 @@
             <table class="table table-bordered mt-3">
                 <tbody>
                 <tr>
-                    <td>Name: {{ucfirst(@SESSION.member->getFName())}} {{ucfirst(@SESSION.member->getLName())}}</td>
+                    <td>Name: {{ucfirst(@SESSION['member']->getFName())}} {{ucfirst(@SESSION['member']->getLName())}}</td>
                 </tr>
                 <tr>
-                    <td> Gender: {{ucfirst(@SESSION.member->getGender())}}</td>
+                    <td> Gender: {{ucfirst(@SESSION['member']->getGender())}}</td>
                 </tr>
                 <tr>
-                    <td>Age:{{@SESSION.member->getAge()}} </td>
+                    <td>Age:{{@SESSION['member']->getAge()}} </td>
                 </tr>
                 <tr>
-                    <td>Phone:{{@SESSION.member->getPhone()}} </td>
+                    <td>Phone:{{@SESSION['member']->getPhone()}} </td>
                 </tr>
                 <tr>
                     <td>Email:{{ucfirst(@SESSION.email)}}</td>
@@ -44,7 +44,7 @@
                     <td>Seeking: {{ucfirst(@SESSION.seeking)}}</td>
                 </tr>
                 <tr>
-                    <td>Interests: {{ ucwords(implode(", ", @SESSION.indoor)) }}, {{ ucwords(implode(", ", @SESSION.outdoor)) }}</td>
+                    <td></td>
                 </tr>
                 </tbody>
             </table>

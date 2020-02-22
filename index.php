@@ -153,7 +153,13 @@ $f3->route('GET|POST /interests', function ($f3) {
 //});
 //default route for summary page
 $f3->route('GET|POST /summary', function ($f3) {
+    echo "I am here";
     $GLOBALS['controller']->summary();
+
+    session_destroy();
+//    $_SESSION = array();
+
+    echo "Now I am here";
 });
 //    $view = new Template();
 //    echo $view->render('views/summary.html');

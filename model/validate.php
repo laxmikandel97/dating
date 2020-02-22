@@ -40,6 +40,7 @@ function validForm()
  */
 function validFirstName($firstName)//$food is the place where user input food is stored
 {
+$firstName =  trim($firstName);
     return !empty($firstName) && ctype_alpha($firstName);
 }
 
@@ -50,6 +51,7 @@ function validFirstName($firstName)//$food is the place where user input food is
  */
 function validLastName($last)//$food is the place where user input food is stored
 {
+    $last = trim($last);
     return !empty($last) && ctype_alpha($last);
 }
 
@@ -61,6 +63,7 @@ function validLastName($last)//$food is the place where user input food is store
 function validAge($age)
 {
     $result = false;
+    $age = trim($age);
     if (!empty($age) && !ctype_alpha($age) && ($age >= 18 && $age <= 118)) {
         $result = true;
     }
@@ -75,6 +78,7 @@ function validAge($age)
 function validPhone($phone)
 {
     $phoneResult = false;
+    $phone = trim($phone);
     if (strlen($phone) == 10 && !empty($phone) && ctype_digit($phone)) {
         $phoneResult = true;
     }

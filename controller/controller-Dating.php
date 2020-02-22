@@ -34,35 +34,40 @@ class DatingController
             $this->_f3->set('phone', $phone);
 
             //check to see if the check box is checked if checked instantiate premiumMember class
+            $checkBox = isset($_POST['checkbox']);
+            $_SESSION['checkbox'] =$checkBox;
+
+//           echo  isset($_POST['checkbox']);//returns 1 is true
             if(isset($_POST['checkbox'])) {
 //                echo "hi checked";
                 $member  = new PremiumMember($firstName, $lastName,$age,$gender,$phone);
             }
-            else{
-                $member = new Member($firstName, $lastName,$age,$gender,$phone);
+            else {
+                $member = new Member($firstName, $lastName, $age, $gender, $phone);
             }
 
-            $_SESSION['member']= $member;//storing object in session array
 
+            $_SESSION['member']= $member;//storing member object in session array
 
-            //If data is valid store them in session variable
             if (validForm()) {
+                //If data is valid store them in session variable
                 //Write data to Session
                 $_SESSION['firstName'] = $firstName;//firstName is a session variable, storing user valid input in session variable
-                $_SESSION['member']->setFName("$firstName");//assigning the color to the sored object
-
                 $_SESSION['lastName'] = $lastName;
-                $_SESSION['member']->setLName("$lastName");
-
                 $_SESSION['age'] = $age;
-                $_SESSION['member']->setAge("$age");
-
                 $_SESSION['gender'] = $gender;
-                $_SESSION['member']->setGender("$gender");
-
                 $_SESSION['phone'] = $phone;
-                $_SESSION['member']->setPhone("$phone");
 
+                //set data to member object
+//                $_SESSION['member']->setFName($firstName);
+//
+//                $_SESSION['member']->setLName($lastName);
+//
+//                $_SESSION['member']->setAge($age);
+//
+//                $_SESSION['member']->setGender($gender);
+//
+//                $_SESSION['member']->setPhone($phone);
 
 
                 //Redirect to profile
@@ -72,6 +77,8 @@ class DatingController
         }
         $view = new Template();
         echo $view->render('views/personalInfo.html');
+
+
     }
 
     function profileInfo()
@@ -96,12 +103,19 @@ class DatingController
                 $_SESSION['state'] = $state;
                 $_SESSION['seeking'] = $seeking;
                 $_SESSION['inputText'] = $inputText;
-                //Redirect to profile
-                $this->_f3->reroute('/interests');
+                if($_SESSION['checkbox'] ==1 ) {
+                    //Redirect to profile
+                    $this->_f3->reroute('/interests');
+                }
+                else{
+                    $this->_f3->reroute('/summary');
+                }
             }
         }
+
         $view = new Template();
         echo $view->render('views/profile.html');
+
     }
 
     function interests()
@@ -141,12 +155,14 @@ class DatingController
         } //end of request if
         $view = new Template();
         echo $view->render('views/interests.html');
+//        echo "<pre>";
+//        var_dump($_SESSION['firstName']);
     }
     function summary()
     {
         $view = new Template();
         echo $view->render('views/summary.html');
-        session_destroy();
+//
     }
 
 }
