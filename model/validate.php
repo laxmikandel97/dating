@@ -30,6 +30,11 @@ function validForm()
         $isValid = false;
         $f3->set("errors['phone']", "Please enter valid 10 digit phone number ");
     }
+
+    if(!validGender($f3->get('gender'))){
+        $isValid = false;
+        $f3->set("errors['gender']", "Please valid gender ");
+    }
     return $isValid;
 }
 
@@ -85,6 +90,18 @@ function validPhone($phone)
     return $phoneResult;
 }
 
+
+function validGender($gender)
+{
+    $genderCheck=false;
+    global $f3;
+
+    if(empty($gender)||in_array($gender, $f3->get('genders')))
+    {
+            $genderCheck = true;
+    }
+    return $genderCheck;
+}
 /**
  * Validating email
  * @param $email

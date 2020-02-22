@@ -4,6 +4,7 @@ class DatingController
 {
     private $_f3; //router
 
+
     function __construct($f3)
     {
         $this->_f3 = $f3;
@@ -47,29 +48,11 @@ class DatingController
             }
 
 
-            $_SESSION['member']= $member;//storing member object in session array
+//            $_SESSION['member']= $member;//storing member object in session array
 
             if (validForm()) {
-                //If data is valid store them in session variable
-                //Write data to Session
-                $_SESSION['firstName'] = $firstName;//firstName is a session variable, storing user valid input in session variable
-                $_SESSION['lastName'] = $lastName;
-                $_SESSION['age'] = $age;
-                $_SESSION['gender'] = $gender;
-                $_SESSION['phone'] = $phone;
-
-                //set data to member object
-//                $_SESSION['member']->setFName($firstName);
-//
-//                $_SESSION['member']->setLName($lastName);
-//
-//                $_SESSION['member']->setAge($age);
-//
-//                $_SESSION['member']->setGender($gender);
-//
-//                $_SESSION['member']->setPhone($phone);
-
-
+                //storing the data in member object if they are valid
+                $_SESSION['member']= $member;
                 //Redirect to profile
                 $this->_f3->reroute('/profile');
 
@@ -77,8 +60,6 @@ class DatingController
         }
         $view = new Template();
         echo $view->render('views/personalInfo.html');
-
-
     }
 
     function profileInfo()
@@ -98,11 +79,11 @@ class DatingController
 
             //If data is valid store them in session variable
             if (profileInfoValidation()) {
-                //Write data to Session
-                $_SESSION['email'] = $email;
-                $_SESSION['state'] = $state;
-                $_SESSION['seeking'] = $seeking;
-                $_SESSION['inputText'] = $inputText;
+                $_SESSION['member']->setEmail($email);
+                $_SESSION['member']->setState($state);
+                $_SESSION['member']->setSeeking($seeking);
+                $_SESSION['member']->setBio($inputText);
+
                 if($_SESSION['checkbox'] ==1 ) {
                     //Redirect to profile
                     $this->_f3->reroute('/interests');

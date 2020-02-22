@@ -35,13 +35,13 @@
                     <td>Phone:{{@SESSION['member']->getPhone()}} </td>
                 </tr>
                 <tr>
-                    <td>Email:{{ucfirst(@SESSION.email)}}</td>
+                    <td>Email:{{ucfirst(@SESSION['member']->getEmail())}}</td>
                 </tr>
                 <tr>
-                    <td>State: {{ucfirst(@SESSION.state)}}</td>
+                    <td>State: {{ucfirst(@SESSION['member']->getState())}}</td>
                 </tr>
                 <tr>
-                    <td>Seeking: {{ucfirst(@SESSION.seeking)}}</td>
+                    <td>Seeking: {{ucfirst(@SESSION['member']->getSeeking())}}</td>
                 </tr>
                 <tr>
                     <td></td>
@@ -58,7 +58,7 @@
                 <p class="h4 text-dark mt-4"> Biography:</p>
             </div>
             <div class="row ml-0">
-                <p><textarea class="textArea">{{ucfirst(@SESSION.inputText)}}</textarea></p>
+                <p><textarea class="textArea">{{ucfirst(@SESSION['member']->getBio())}}</textarea></p>
             </div>
         </div>
     </div>

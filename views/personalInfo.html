@@ -63,6 +63,9 @@
                                         >{{ ucfirst(@genderOption) }}
                                     </label><br>
                                 </repeat>
+                                <check if="{{ @errors['gender'] }}">
+                                    <span class="err">{{ @errors['gender'] }}</span>
+                                </check><br>
                             </div>
                         </div>
                     </div>
