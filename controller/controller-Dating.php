@@ -11,8 +11,11 @@ class DatingController
 {
     private $_f3; //router
 
+    private  $_val;
+
     function __construct($f3)
     {
+        $this->_val=new Validate();
         $this->_f3 = $f3;
     }
 
@@ -57,7 +60,7 @@ class DatingController
                 $member = new Member($firstName, $lastName, $age, $gender, $phone);
             }
 
-            if (validForm()) {
+            if ($this->_val->validForm()) {
                 //storing the data in member object if they are valid
                 $_SESSION['member'] = $member;
                 //Redirect to profile
@@ -88,7 +91,7 @@ class DatingController
             $this->_f3->set('inputText', $inputText);
 
             //If data is valid store them in session variable
-            if (profileInfoValidation()) {
+            if ($this->_val->profileInfoValidation()) {
                 $_SESSION['member']->setEmail($email);
                 $_SESSION['member']->setState($state);
                 $_SESSION['member']->setSeeking($seeking);
@@ -133,7 +136,7 @@ class DatingController
             $this->_f3->set('outdoorInterests', $selectedOutdoors);
 
             //If data is valid
-            if (interests()) {
+            if ($this->_val->interest()) {
                 //Write data to Session
                 $_SESSION['indoor'] = $selectedIndoors;
                 $_SESSION['outdoor'] = $selectedOutdoors;
