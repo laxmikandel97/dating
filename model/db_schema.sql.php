@@ -17,12 +17,12 @@ CREATE TABLE Member
 
     PRIMARY KEY (member_id)
 );
-CREATE TABLE Interest
-(
+
+CREATE TABLE Interests (
 interest_id int NOT NULL AUTO_INCREMENT,
-interest varchar(255) NOT NULL,
-type varchar(255) NOT NULL,
-PRIMARY KEY(interest_id)
+interest varchar(255),
+type varchar(255),
+PRIMARY KEY (interest_id)
 );
 
 CREATE TABLE member_interest
