@@ -11,6 +11,7 @@ session_start();
 
 //create an instance of the base class
 $f3 = Base::instance();
+$db= new Database();
 $controller = new DatingController($f3);
 //Turn on Fat-Free error reporting
 $f3->set('DEBUG', 3);

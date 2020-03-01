@@ -31,7 +31,6 @@ class Validate
         return $this->_errors;
     }
 
-
     function validForm()
     {
         global $f3;

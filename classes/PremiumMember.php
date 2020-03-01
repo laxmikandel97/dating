@@ -64,4 +64,5 @@ class PremiumMember extends Member
         $this->_outDoorInterests = $outDoorInterests;
     }
 
+
 }

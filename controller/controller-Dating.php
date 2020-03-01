@@ -15,12 +15,13 @@ class DatingController
 
     function __construct($f3)
     {
+        //Instantiate validate class
         $this->_val=new Validate();
         $this->_f3 = $f3;
     }
 
     /**
-     * method to render to home page
+     * method to ender to home page
      */
     function home()
     {
@@ -155,6 +156,11 @@ class DatingController
      */
     function summary()
     {
+
+        $GLOBALS['db']->insertMember($_SESSION['member']);
+
+        var_dump($GLOBALS['db']);
+
         $view = new Template();
         echo $view->render('views/summary.html');
     }

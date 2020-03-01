@@ -16,6 +16,7 @@ class Member
  private  $_state;
  private  $_seeking;
  private  $_bio;
+ private $premium;
 
 
     /**
@@ -195,5 +196,9 @@ class Member
     function setBio($bio)
     {
         $this->_bio = $bio;
+    }
+    function checkPremium()
+    {
+        return $this->_premium;
     }
 }
