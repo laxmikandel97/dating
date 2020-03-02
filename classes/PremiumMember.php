@@ -17,12 +17,13 @@ class PremiumMember extends Member
      * @param $age
      * @param $gender
      * @param $phone
+     * @param $premium
      * @param string $inDoorInterests
      * @param string $outDoorInterests
      */
-    function __construct($fName, $lName,$age,$gender,$phone,$inDoorInterests="?",$outDoorInterests="?")
+    function __construct($fName, $lName,$age,$gender,$phone,$premium,$inDoorInterests="?",$outDoorInterests="?")
     {
-        parent::__construct($fName, $lName,$age,$gender,$phone);
+        parent::__construct($fName, $lName,$age,$gender,$phone,$premium);
         $this->_inDoorInterests = $inDoorInterests;
         $this->_outDoorInterests = $outDoorInterests;
 

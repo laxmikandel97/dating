@@ -48,6 +48,13 @@ $f3->set('outdoor', array(
 $f3->route('GET /', function () {
    $GLOBALS['controller']->home();
 });
+
+$f3->route('GET /homeB',function (){
+    $GLOBALS['controller']->home();
+});
+$f3->route('GET /admin', function (){
+    $GLOBALS['controller']->admin();
+});
 //default route for personalInfo page
 $f3->route('GET|POST /personalInfo', function ($f3) {
     $GLOBALS['controller']->personalInfo();

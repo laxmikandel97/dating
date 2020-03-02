@@ -14,6 +14,7 @@ CREATE TABLE Member
     bio varchar(255),
     premium tinyint,
     project_image varchar(255),
+    interests varchar(255),
     PRIMARY KEY (member_id)
 );
 *INTEREST TABLE
@@ -30,6 +31,25 @@ interest_id int NOT NULL,
 FOREIGN KEY (member_id) REFERENCES Member (member_id) ON UPDATE CASCADE,
 FOREIGN KEY (interest_id) REFERENCES Interest (interest_id) ON UPDATE CASCADE
 );
+]
+*Populating interest table
+INSERT INTO Interests VALUES(
+DEFAULT, "TV", "indoor"),
+(DEFAULT,"Puzzles","indoor"),
+(DEFAULT,"Movies","indoor"),
+(DEFAULT,"Reading","indoor"),
+(DEFAULT,"Cooking","indoor"),
+(DEFAULT,"Playing cards","indoor"),
+(DEFAULT,"Board games","indoor"),
+(DEFAULT,"video games","indoor"),
+(DEFAULT, "Hiking", "outdoor"),
+(DEFAULT,"Walking","outdoor"),
+(DEFAULT,"Biking","outdoor"),
+(DEFAULT,"Climbing","outdoor"),
+(DEFAULT,"Swimming","outdoor"),
+(DEFAULT,"Collecting stones","outdoor"),
+(DEFAULT,"Boardgames","outdoor"),
+(DEFAULT,"video games","outdoor");
  */
 require_once("/home/laxmikan/config-dating.php");
 class Database
@@ -101,5 +121,6 @@ class Database
         $statement->execute([$member_id]);
         return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
+
 
 }

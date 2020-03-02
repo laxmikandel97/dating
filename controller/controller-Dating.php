@@ -28,7 +28,6 @@ class DatingController
         $view = new Template();
         echo $view->render('views/home.html');
     }
-
     /**
      * personal info page
      */
@@ -49,16 +48,20 @@ class DatingController
             $this->_f3->set('age', $age);
             $this->_f3->set('gender', $gender);
             $this->_f3->set('phone', $phone);
-            $this->_f3->set('checkBox', checkbox);
+//          $this->_f3->set('checkBox', checkbox);
+
 
             //check to see if the check box is checked if checked instantiate premiumMember class
             $checkBox = isset($_POST['checkbox']);
             $_SESSION['checkbox'] = $checkBox;
+           $this->_f3->set('checkBox', $checkBox);
+
+
 
             if (isset($_POST['checkbox'])) {
-                $member = new PremiumMember($firstName, $lastName, $age, $gender, $phone);
+                $member = new PremiumMember($firstName, $lastName, $age, $gender, $phone,$checkBox);
             } else {
-                $member = new Member($firstName, $lastName, $age, $gender, $phone);
+                $member = new Member($firstName, $lastName, $age, $gender, $phone,$checkBox);
             }
 
             if ($this->_val->validForm()) {
@@ -68,6 +71,8 @@ class DatingController
                 $this->_f3->reroute('/profile');
 
             }
+            var_dump($_SESSION['member']);
+
         }
         $view = new Template();
         echo $view->render('views/personalInfo.html');
@@ -106,7 +111,6 @@ class DatingController
                 }
             }
         }
-
         $view = new Template();
         echo $view->render('views/profile.html');
 
@@ -158,10 +162,22 @@ class DatingController
     {
 
         $GLOBALS['db']->insertMember($_SESSION['member']);
+        echo"<pre>";
+        var_dump($_SESSION['member']);
 
-        var_dump($GLOBALS['db']);
+            //        var_dump($GLOBALS['db']);
 
         $view = new Template();
         echo $view->render('views/summary.html');
+
+    }
+    function admin()
+    {
+        global $db;
+        $this->_f3->set("allMembers", $db->getMembers());
+        $view = new Template();
+        echo $view->render('views/admin.php');
+        session_destroy();
+
     }
 }

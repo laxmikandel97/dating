@@ -16,7 +16,7 @@ class Member
  private  $_state;
  private  $_seeking;
  private  $_bio;
- private $premium;
+ private $_premium;
 
 
     /**
@@ -26,14 +26,16 @@ class Member
      * @param $age
      * @param $gender
      * @param $phone
+     * @param $premium
      */
-    function __construct($fName, $lName,$age,$gender,$phone)
+    function __construct($fName, $lName,$age,$gender,$phone,$premium)
     {
         $this->_fName = $fName;
         $this->_lName = $lName;
         $this-> _age = $age;
         $this->_gender = $gender;
         $this->_phone = $phone;
+        $this->_premium = $premium;
     }
 
     /**
