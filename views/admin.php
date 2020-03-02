@@ -40,7 +40,7 @@
                 </false>
             </check>
             </td>
-            <td>interest</td>
+            <td>{{ @value['interests'] }} </td>
             <td>Null</td>
         </tr>
     </repeat>

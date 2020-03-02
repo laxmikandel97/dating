@@ -52,6 +52,11 @@ DEFAULT, "TV", "indoor"),
 (DEFAULT,"video games","outdoor");
  */
 require_once("/home/laxmikan/config-dating.php");
+
+/**
+ * Class Database
+ * Contains all the sql queries
+ */
 class Database
 {
     private $_dbh;
@@ -67,7 +72,10 @@ class Database
         }
     }
 
-
+    /**
+     * insert member that user input in app
+     * @param $member
+     */
     function insertMember($member)
     {
         //1. Define a query
@@ -97,6 +105,10 @@ class Database
     }
 
 
+    /**
+     * Gets all the member that are stored in database table called member
+     * @return array
+     */
     function getMembers(){
         $sql = "SELECT * FROM  Member
                 ORDER BY lname, fname";
@@ -105,6 +117,12 @@ class Database
         $result = $statement->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
+
+    /**
+     * Get the member by its id
+     * @param $member_id
+     * @return array
+     */
     function getMember($member_id)
     {
         $sql= "SELECT * FROM Member WHERE member_id=?";
@@ -113,6 +131,11 @@ class Database
         return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    /**
+     * Get the interest name by passing member id
+     * @param $member_id
+     * @return mixed
+     */
     function getInterests($member_id)
     {
         $sql = "SELECT Interests.interest_id,Interests.interest FROM Interests 
@@ -122,5 +145,16 @@ class Database
         return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
 
+//    function insertIntoMemberInterest($memberId)
+//    {
+//        $sql = "INSERT INTO member_interest VALUES(?, ?)";
+//        $statement = $this->_db->prepare($sql);
+//        $statement->execute([$id, $sessionId]);
+//        return $id;
+//
+//    }
+
+
+//HOW TO INSERT THE USER SELECTED INTEREST IN THE TABLE ??
 
 }
